@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1h04rst6cwux"]
+
+[ext_resource type="Shader" path="res://shad.gdshader" id="1_d7vlh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4vvp"]
+shader = ExtResource("1_d7vlh")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qlt42"]
+
+[node name="Room" type="Node2D"]
+position = Vector2(-62, -214)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_w4vvp")
+scale = Vector2(100, 100)
+texture = SubResource("CanvasTexture_qlt42")

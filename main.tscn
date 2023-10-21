@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfdvx3kg4ok2r"]
+[gd_scene load_steps=3 format=3 uid="uid://cfdvx3kg4ok2r"]
 
 [ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://character.tscn" id="1_tceel"]
+[ext_resource type="Script" path="res://RoomMaker.gd" id="3_t6yon"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
 position = Vector2(-4, 3)
+
+[node name="RoomMaker" type="Node" parent="."]
+script = ExtResource("3_t6yon")
