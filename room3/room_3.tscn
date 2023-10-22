@@ -21,7 +21,6 @@ position = Vector2(50, 49)
 script = ExtResource("1_ia8s7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
 use_parent_material = true
 position = Vector2(-53, 227)
 scale = Vector2(0.976207, 0.9675)
@@ -97,11 +96,11 @@ position = Vector2(692, 948)
 audio = ExtResource("9_wwfdc")
 
 [node name="WallLayer" type="Area2D" parent="."]
+z_index = 2
 script = ExtResource("8_okhuw")
 
 [node name="wall_layer_sprite" type="Sprite2D" parent="WallLayer"]
 visible = false
-z_index = 1
 use_parent_material = true
 position = Vector2(-53, 227)
 scale = Vector2(0.976207, 0.9675)

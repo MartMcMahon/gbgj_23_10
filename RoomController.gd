@@ -10,7 +10,7 @@ var current_room_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	roomScenes = [load("res://room1/room_1.tscn"), load("res://room2/room_2.tscn")]# $"Room_3"]
+	roomScenes = [load("res://room1/room_1.tscn"), load("res://room2/room_2.tscn"), load("res://room3/room_3.tscn")]
 	current_room_node = roomScenes[starting_room_idx].instantiate()
 	current_room_node.position = DEFAULT_ROOM_POS
 	add_child(current_room_node)
@@ -18,6 +18,8 @@ func _ready():
 func goto_room(idx):
 	if idx >= 3:
 		idx = 0
+	elif idx < 0:
+		idx = 2
 	remove_child(current_room_node)
 	current_room_node = roomScenes[idx].instantiate()
 	current_room_node.position = DEFAULT_ROOM_POS
