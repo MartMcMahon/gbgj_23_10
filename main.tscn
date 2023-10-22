@@ -1,38 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfdvx3kg4ok2r"]
+[gd_scene load_steps=2 format=3 uid="uid://cni714c65ppxd"]
 
-[ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://guy/character.tscn" id="1_tceel"]
-[ext_resource type="Script" path="res://RoomController.gd" id="3_5vsba"]
-[ext_resource type="Texture2D" uid="uid://bcyafcosfwae4" path="res://bg.png" id="4_7qvcr"]
-[ext_resource type="Script" path="res://transition_collisions.gd" id="5_0qfl0"]
+[ext_resource type="Script" path="res://main.gd" id="1_wh35y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_igi8m"]
-size = Vector2(20, 271.5)
+[node name="main" type="Node2D"]
+script = ExtResource("1_wh35y")
 
-[node name="Game" type="Node2D"]
+[node name="StartButton" type="Button" parent="."]
+offset_left = 544.0
+offset_top = 698.0
+offset_right = 754.0
+offset_bottom = 800.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -10
-z_as_relative = false
-position = Vector2(638, 613)
-scale = Vector2(1.02327, 1.02327)
-texture = ExtResource("4_7qvcr")
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 564.0
+offset_top = 882.0
+offset_right = 774.0
+offset_bottom = 984.0
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-blend_mode = 1
-
-[node name="RoomController" type="Node2D" parent="."]
-script = ExtResource("3_5vsba")
-
-[node name="Player" parent="." instance=ExtResource("1_tceel")]
-position = Vector2(1285, 868)
-
-[node name="LeftTransitionLayer" type="Area2D" parent="."]
-position = Vector2(50, 49)
-script = ExtResource("5_0qfl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTransitionLayer"]
-position = Vector2(-54, 817.75)
-shape = SubResource("RectangleShape2D_igi8m")
-
-[connection signal="advance_room" from="LeftTransitionLayer" to="RoomController" method="advance_room"]
-[connection signal="body_entered" from="LeftTransitionLayer" to="LeftTransitionLayer" method="_on_body_entered"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

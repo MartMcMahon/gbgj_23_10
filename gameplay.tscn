@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfdvx3kg4ok2r"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_83lt2"]
+[ext_resource type="Texture2D" uid="uid://bcyafcosfwae4" path="res://bg.png" id="2_somkv"]
+[ext_resource type="Script" path="res://RoomController.gd" id="3_pdeq8"]
+[ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://guy/character.tscn" id="4_ryon0"]
+[ext_resource type="Script" path="res://transition_collisions.gd" id="5_fofpq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igi8m"]
+size = Vector2(20, 271.5)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_83lt2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+z_as_relative = false
+position = Vector2(638, 613)
+scale = Vector2(1.02327, 1.02327)
+texture = ExtResource("2_somkv")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
+
+[node name="RoomController" type="Node2D" parent="."]
+script = ExtResource("3_pdeq8")
+starting_room_idx = 1
+
+[node name="Player" parent="." instance=ExtResource("4_ryon0")]
+position = Vector2(1285, 868)
+
+[node name="LeftTransitionLayer" type="Area2D" parent="."]
+position = Vector2(50, 49)
+script = ExtResource("5_fofpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTransitionLayer"]
+position = Vector2(-54, 817.75)
+shape = SubResource("RectangleShape2D_igi8m")
+
+[connection signal="advance_room" from="LeftTransitionLayer" to="RoomController" method="advance_room"]
+[connection signal="body_entered" from="LeftTransitionLayer" to="LeftTransitionLayer" method="_on_body_entered"]
