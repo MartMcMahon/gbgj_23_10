@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4cbah0eb2vyn"]
+
+[ext_resource type="Script" path="res://room_node.gd" id="1_mm04a"]
+[ext_resource type="Texture2D" uid="uid://cei10v3jut4q6" path="res://room1/room_1.png" id="2_ubfxm"]
+[ext_resource type="Texture2D" uid="uid://cdmsnjot1hfbd" path="res://room1/room_1_wall_layer.png" id="3_p3e1d"]
+[ext_resource type="Script" path="res://Actionables.gd" id="3_v40fk"]
+[ext_resource type="PackedScene" uid="uid://dm1a2bemqedtv" path="res://wall_light/Wall Light.tscn" id="4_7bopx"]
+[ext_resource type="Script" path="res://door_collisions.gd" id="4_beame"]
+
+[node name="Room" type="Node2D"]
+position = Vector2(50, 49)
+script = ExtResource("1_mm04a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-53, 227)
+scale = Vector2(0.976207, 0.9675)
+texture = ExtResource("2_ubfxm")
+centered = false
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="right_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/right_wall"]
+z_index = 1
+position = Vector2(-271, -142)
+polygon = PackedVector2Array(200, 443, 194, 889, 268, 909, 351.171, 965.024, 352, 1033, 438, 973, 437, 545)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls/right_wall"]
+z_index = 1
+position = Vector2(-271, -142)
+polygon = PackedVector2Array(196, 1072, 100, 1143, 125, 1208, 281, 1083)
+
+[node name="back_wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/back_wall"]
+position = Vector2(-10, 15)
+polygon = PackedVector2Array(200, 443, 196, 888, 1279, 877, 1235, 455)
+
+[node name="front_wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/front_wall"]
+position = Vector2(-219, 601)
+polygon = PackedVector2Array(105, 442, 197, 495, 1728, 504, 1729, 444)
+
+[node name="left_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1386, 189)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/left_wall"]
+position = Vector2(-362, -280)
+polygon = PackedVector2Array(184, 581, 171, 954, 381.731, 1107.74, 382, 1169, 489, 1186, 416, 463)
+
+[node name="Actionables" type="Node" parent="."]
+script = ExtResource("3_v40fk")
+
+[node name="Wall Light" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
+position = Vector2(282, 709)
+
+[node name="Wall Light2" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
+position = Vector2(1163, 717)
+
+[node name="WallLayer" type="Area2D" parent="."]
+script = ExtResource("4_beame")
+
+[node name="wall_layer_sprite" type="Sprite2D" parent="WallLayer"]
+visible = false
+z_index = 2
+use_parent_material = true
+position = Vector2(-53, 227)
+scale = Vector2(0.976207, 0.9675)
+texture = ExtResource("3_p3e1d")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallLayer"]
+position = Vector2(-53, 230)
+scale = Vector2(0.976207, 0.9675)
+polygon = PackedVector2Array(96.291, 469.251, 141.363, 630.491, 148.534, 666.667, 46.0968, 731.783, -20.4874, 730.749, -20.4874, 452.713)
+
+[connection signal="body_entered" from="WallLayer" to="WallLayer" method="_on_body_entered"]
+[connection signal="body_exited" from="WallLayer" to="WallLayer" method="_on_body_exited"]

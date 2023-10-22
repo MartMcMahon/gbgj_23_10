@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 150.0
+@export var walking_speed = 150.0
 @onready var _animated_sprite = $AnimatedSprite2D
 
 var x_scale = 0.1
 var candle_decay_factor: float = 5.0
+var is_in_bookcase_area = false
+
+signal player_action
 
 func _physics_process(delta):
 	var input_direction = Vector2(
@@ -12,7 +15,7 @@ func _physics_process(delta):
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
 	
-	self.velocity = input_direction * SPEED
+	self.velocity = input_direction * walking_speed
 	if (self.velocity != Vector2(0.0, 0.0)):
 		_animated_sprite.play("walk")
 		if (self.velocity.x < 0.0):
@@ -22,17 +25,32 @@ func _physics_process(delta):
 	else:
 		_animated_sprite.stop()
 
-	print("ok?")	
 	move_and_slide()
-	print("ok?")
 	light_decay(delta)
-	print("ok?")
 	
-	print(Input.get_action_strength("ui_accept"))
-	if (Input.get_action_strength("ui_accept")):
-		print($"../RoomController/Room_1/Actionables".actionables)
 
+func _input(event):
+	if event.is_action_pressed("player_select"):
+		if is_in_bookcase_area:
+			print('collect book!')
+			return
+		print($"../RoomController")
+		var actionables = $"../RoomController".current_room_node.actionables
+		var closest_bunch = get_closest(actionables)
+		print("distance to closest ", snapped(closest_bunch[1], 0.01))
+		if closest_bunch[1] <= 120.0:
+			closest_bunch[0].switch()
+			return
 
+func get_closest(nodes):
+	var closest_dist: float = 10000.0
+	var closest_node
+	for node in nodes:
+		var this_dist = self.position.distance_to(node.position)
+		if this_dist < closest_dist:
+			closest_dist = this_dist
+			closest_node = node
+	return [closest_node, closest_dist]
 
 func light_decay(delta):
 	var texture_scale = $CandleLight.texture_scale
@@ -41,3 +59,4 @@ func light_decay(delta):
 	if ($CandleLight.texture_scale == 0.0):
 		# start death timer
 		pass
+

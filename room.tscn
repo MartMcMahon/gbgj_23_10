@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1h04rst6cwux"]
+[gd_scene load_steps=4 format=3 uid="uid://b1h04rst6cwux"]
 
 [ext_resource type="Script" path="res://room.gd" id="2_6jcr7"]
-[ext_resource type="Texture2D" path="res://room1.png" id="2_25dci"]
 [ext_resource type="Script" path="res://Actionables.gd" id="3_vluub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hq1qq"]
@@ -15,7 +14,6 @@ script = ExtResource("2_6jcr7")
 use_parent_material = true
 position = Vector2(-69, -75)
 scale = Vector2(0.423043, 0.423989)
-texture = ExtResource("2_25dci")
 centered = false
 
 [node name="Walls" type="Node" parent="."]

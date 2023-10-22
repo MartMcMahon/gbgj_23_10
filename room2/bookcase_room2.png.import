@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgd3jp1j486my"
-path="res://.godot/imported/room_1.png-50ba8dd266aaac44547f2d2812aa490e.ctex"
+uid="uid://dapcqxdtxj48c"
+path="res://.godot/imported/bookcase_room2.png-5675e381bcb975ee6b84a7cfaae91606.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://room_1.png"
-dest_files=["res://.godot/imported/room_1.png-50ba8dd266aaac44547f2d2812aa490e.ctex"]
+source_file="res://room2/bookcase_room2.png"
+dest_files=["res://.godot/imported/bookcase_room2.png-5675e381bcb975ee6b84a7cfaae91606.ctex"]
 
 [params]
 

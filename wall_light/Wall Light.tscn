@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm1a2bemqedtv"]
+[gd_scene load_steps=6 format=3 uid="uid://dm1a2bemqedtv"]
 
 [ext_resource type="Script" path="res://wall_light/Wall Light.gd" id="1_hcd83"]
 [ext_resource type="Texture2D" uid="uid://b6pha5lx1hu0l" path="res://wall_light/wall_light_on.png" id="2_kp008"]
 [ext_resource type="Texture2D" uid="uid://kjpx780rnfud" path="res://wall_light/wall_light_off.png" id="3_0fgub"]
+
+[sub_resource type="Gradient" id="Gradient_fst13"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.880645)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ockmw"]
+gradient = SubResource("Gradient_fst13")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.06)
 
 [node name="Wall Light" type="Node2D"]
 script = ExtResource("1_hcd83")
@@ -11,6 +22,14 @@ script = ExtResource("1_hcd83")
 visible = false
 scale = Vector2(3.85, 3.85)
 texture = ExtResource("2_kp008")
+
+[node name="CandleLight" type="PointLight2D" parent="on"]
+scale = Vector2(0.25974, 0.25974)
+color = Color(0.984314, 0.921569, 0.764706, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ockmw")
+texture_scale = 0.8
+height = 100.0
 
 [node name="off" type="Sprite2D" parent="."]
 scale = Vector2(3.85, 3.85)
