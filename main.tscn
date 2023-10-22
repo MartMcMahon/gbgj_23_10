@@ -1,26 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfdvx3kg4ok2r"]
 
-[ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://character.tscn" id="1_tceel"]
-[ext_resource type="PackedScene" uid="uid://b1h04rst6cwux" path="res://room.tscn" id="2_hkrdb"]
+[ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://guy/character.tscn" id="1_tceel"]
+[ext_resource type="Script" path="res://RoomController.gd" id="3_5vsba"]
+[ext_resource type="PackedScene" uid="uid://b4cbah0eb2vyn" path="res://room_1.tscn" id="4_eapwx"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g41mk"]
-load_path = "res://.godot/imported/bg_raw.png-163b4460a35b774eb14bc19e022f1b86.ctex"
-
-[node name="Node2D" type="Node2D"]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
-visible = false
-position = Vector2(546, 360)
-scale = Vector2(0.360656, 0.222305)
-texture = SubResource("CompressedTexture2D_g41mk")
-
-[node name="Room1" parent="." instance=ExtResource("2_hkrdb")]
+[node name="Game" type="Node2D"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
-position = Vector2(313, 864)
+[node name="RoomController" type="Node2D" parent="."]
+script = ExtResource("3_5vsba")
+
+[node name="Room_1" parent="RoomController" instance=ExtResource("4_eapwx")]
+
+[node name="Room_2" type="Node2D" parent="."]
+visible = false
+
+[node name="Room_3" type="Node2D" parent="."]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("1_tceel")]
+position = Vector2(265, 719)
