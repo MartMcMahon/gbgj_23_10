@@ -6,6 +6,8 @@ extends CharacterBody2D
 var x_scale = 0.1
 var candle_decay_factor: float = 5.0
 var is_in_bookcase_area = false
+var is_in_phono_area = false
+var is_in_light_area = false
 
 signal player_action
 
@@ -34,12 +36,21 @@ func _input(event):
 		if is_in_bookcase_area:
 			print('collect book!')
 			return
-		print($"../RoomController")
+		
+		if is_in_phono_area:
+			$"../RoomController".current_room_node.phonograph.switch()
+			print('phono!')
+			return
+		
 		var actionables = $"../RoomController".current_room_node.actionables
 		var closest_bunch = get_closest(actionables)
 		print("distance to closest ", snapped(closest_bunch[1], 0.01))
-		if closest_bunch[1] <= 120.0:
-			closest_bunch[0].switch()
+		if closest_bunch[1] <= 150.0: # and is_in_light_area:
+			if closest_bunch[0].switch():
+				$"../".light_counter += 1
+			else: 
+				$"../".light_counter -= 1
+			print("lights: ", $"../".light_counter)
 			return
 
 func get_closest(nodes):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4cbah0eb2vyn"]
+[gd_scene load_steps=10 format=3 uid="uid://b4cbah0eb2vyn"]
 
 [ext_resource type="Script" path="res://room_node.gd" id="1_mm04a"]
 [ext_resource type="Texture2D" uid="uid://cei10v3jut4q6" path="res://room1/room_1.png" id="2_ubfxm"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" path="res://Actionables.gd" id="3_v40fk"]
 [ext_resource type="PackedScene" uid="uid://dm1a2bemqedtv" path="res://wall_light/Wall Light.tscn" id="4_7bopx"]
 [ext_resource type="Script" path="res://door_collisions.gd" id="4_beame"]
+[ext_resource type="PackedScene" uid="uid://cblnvrvgcnhj4" path="res://phono/phono.tscn" id="5_l6tcp"]
+[ext_resource type="AudioStream" uid="uid://c63qdcjaej4ud" path="res://music/ddcro1.wav" id="6_eh7lf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl75n"]
+size = Vector2(68.25, 94.555)
 
 [node name="Room" type="Node2D"]
 position = Vector2(50, 49)
@@ -58,8 +63,26 @@ script = ExtResource("3_v40fk")
 [node name="Wall Light" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
 position = Vector2(282, 709)
 
+[node name="Area2D2" type="Area2D" parent="Actionables/Wall Light"]
+position = Vector2(-6, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables/Wall Light/Area2D2"]
+position = Vector2(3, 184)
+shape = SubResource("RectangleShape2D_pl75n")
+
 [node name="Wall Light2" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
 position = Vector2(1163, 717)
+
+[node name="Area2D2" type="Area2D" parent="Actionables/Wall Light2"]
+position = Vector2(-1, -23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables/Wall Light2/Area2D2"]
+position = Vector2(3, 184)
+shape = SubResource("RectangleShape2D_pl75n")
+
+[node name="phono" parent="Actionables" instance=ExtResource("5_l6tcp")]
+position = Vector2(462, 890)
+audio = ExtResource("6_eh7lf")
 
 [node name="WallLayer" type="Area2D" parent="."]
 script = ExtResource("4_beame")

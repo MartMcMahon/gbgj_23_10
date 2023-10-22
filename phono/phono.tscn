@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cblnvrvgcnhj4"]
+
+[ext_resource type="Script" path="res://phono/phono.gd" id="1_p5jgh"]
+[ext_resource type="Texture2D" uid="uid://cbwva2tie67n8" path="res://phono/phono.png" id="2_826vk"]
+[ext_resource type="AudioStream" uid="uid://c63qdcjaej4ud" path="res://music/ddcro1.wav" id="3_knrcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nleuc"]
+size = Vector2(126, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8yvr"]
+size = Vector2(83, 41)
+
+[node name="phono" type="Node2D"]
+script = ExtResource("1_p5jgh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -40)
+texture = ExtResource("2_826vk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_knrcq")
+autoplay = true
+
+[node name="PhopoArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhopoArea"]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_nleuc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 21.5)
+shape = SubResource("RectangleShape2D_r8yvr")
+
+[connection signal="body_entered" from="PhopoArea" to="." method="_on_phopo_area_body_entered"]
+[connection signal="body_exited" from="PhopoArea" to="." method="_on_phopo_area_body_exited"]

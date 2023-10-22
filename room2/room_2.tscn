@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tywnaugc3w3a"]
+[gd_scene load_steps=15 format=3 uid="uid://tywnaugc3w3a"]
 
 [ext_resource type="Script" path="res://room_node.gd" id="1_17ps5"]
 [ext_resource type="Texture2D" uid="uid://cqc7wlg73n164" path="res://room2/room2.png" id="1_go0vt"]
@@ -10,6 +10,11 @@
 [ext_resource type="Script" path="res://transition_collisions.gd" id="6_04hy2"]
 [ext_resource type="Texture2D" uid="uid://dapcqxdtxj48c" path="res://room2/bookcase_room2.png" id="6_n8f4p"]
 [ext_resource type="Script" path="res://room2/BookcaseArea.gd" id="7_hlepc"]
+[ext_resource type="PackedScene" uid="uid://cblnvrvgcnhj4" path="res://phono/phono.tscn" id="8_rl1ea"]
+[ext_resource type="AudioStream" uid="uid://cwavmfckddklx" path="res://music/ddcro2.wav" id="9_8vkvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aootw"]
+size = Vector2(68.25, 94.555)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vxhb"]
 size = Vector2(20, 271.5)
@@ -73,8 +78,32 @@ script = ExtResource("2_i8jya")
 [node name="Wall Light" parent="Actionables" groups=["actionable"] instance=ExtResource("3_7hd37")]
 position = Vector2(282, 709)
 
+[node name="Area2D" type="Area2D" parent="Actionables/Wall Light"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables/Wall Light/Area2D"]
+position = Vector2(-1, 183)
+shape = SubResource("RectangleShape2D_aootw")
+
 [node name="Wall Light2" parent="Actionables" groups=["actionable"] instance=ExtResource("3_7hd37")]
 position = Vector2(1163, 717)
+
+[node name="Area2D2" type="Area2D" parent="Actionables/Wall Light2"]
+position = Vector2(-1, -23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables/Wall Light2/Area2D2"]
+position = Vector2(3, 184)
+shape = SubResource("RectangleShape2D_aootw")
+
+[node name="Wall Light3" parent="Actionables" groups=["actionable"] instance=ExtResource("3_7hd37")]
+position = Vector2(736, 671)
+scale = Vector2(0.6, 0.6)
+
+[node name="Area2D" type="Area2D" parent="Actionables/Wall Light3"]
+position = Vector2(-1, -23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionables/Wall Light3/Area2D"]
+position = Vector2(3, 184)
+shape = SubResource("RectangleShape2D_aootw")
 
 [node name="Bookcase" type="Node2D" parent="Actionables"]
 position = Vector2(522, 722.688)
@@ -89,6 +118,11 @@ script = ExtResource("7_hlepc")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Actionables/Bookcase/BookcaseArea"]
 position = Vector2(36, 33.312)
 polygon = PackedVector2Array(15, 11, 76, 27.312, -42, 122, -63, 118)
+
+[node name="phono" parent="Actionables" instance=ExtResource("8_rl1ea")]
+position = Vector2(867, 793)
+scale = Vector2(0.6, 0.6)
+audio = ExtResource("9_8vkvx")
 
 [node name="WallLayer" type="Area2D" parent="."]
 script = ExtResource("4_wjtqd")
@@ -116,6 +150,12 @@ shape = SubResource("RectangleShape2D_1vxhb")
 
 [connection signal="body_entered" from="Walls/back_wall/back_room" to="Walls/back_wall/back_room" method="_on_body_entered"]
 [connection signal="body_exited" from="Walls/back_wall/back_room" to="Walls/back_wall/back_room" method="_on_body_exited"]
+[connection signal="body_entered" from="Actionables/Wall Light/Area2D" to="Actionables/Wall Light" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Actionables/Wall Light/Area2D" to="Actionables/Wall Light" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Actionables/Wall Light2/Area2D2" to="Actionables/Wall Light" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Actionables/Wall Light2/Area2D2" to="Actionables/Wall Light" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Actionables/Wall Light3/Area2D" to="Actionables/Wall Light3" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Actionables/Wall Light3/Area2D" to="Actionables/Wall Light3" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Actionables/Bookcase/BookcaseArea" to="Actionables/Bookcase/BookcaseArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Actionables/Bookcase/BookcaseArea" to="Actionables/Bookcase/BookcaseArea" method="_on_body_exited"]
 [connection signal="body_entered" from="WallLayer" to="WallLayer" method="_on_body_entered"]
