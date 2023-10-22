@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4cbah0eb2vyn"]
+
+[ext_resource type="Script" path="res://room.gd" id="1_eayv3"]
+[ext_resource type="Texture2D" uid="uid://cgd3jp1j486my" path="res://room_1.png" id="2_p7534"]
+[ext_resource type="Script" path="res://Actionables.gd" id="3_gcbsk"]
+[ext_resource type="PackedScene" uid="uid://dm1a2bemqedtv" path="res://wall_light/Wall Light.tscn" id="4_2dfam"]
+
+[node name="Room" type="Node2D"]
+position = Vector2(50, 49)
+script = ExtResource("1_eayv3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-48, 217)
+scale = Vector2(3.88918, 3.855)
+texture = ExtResource("2_p7534")
+centered = false
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="right_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/right_wall"]
+position = Vector2(-271, -142)
+polygon = PackedVector2Array(200, 443, 110, 1197, 434, 961, 437, 545)
+
+[node name="back_wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/back_wall"]
+polygon = PackedVector2Array(200, 443, 196, 888, 1232, 878, 1235, 455)
+
+[node name="front_wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/front_wall"]
+position = Vector2(-219, 601)
+polygon = PackedVector2Array(105, 442, 197, 495, 1728, 504, 1729, 444)
+
+[node name="left_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1386, 189)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/left_wall"]
+position = Vector2(-361, -298)
+polygon = PackedVector2Array(184, 581, 171, 954, 489, 1186, 416, 463)
+
+[node name="Actionables" type="Node" parent="."]
+script = ExtResource("3_gcbsk")
+
+[node name="table2" type="StaticBody2D" parent="Actionables"]
+
+[node name="table1" type="StaticBody2D" parent="Actionables"]
+position = Vector2(451, 947)
+
+[node name="couch" type="StaticBody2D" parent="Actionables"]
+position = Vector2(644, 955)
+
+[node name="room_object2" type="StaticBody2D" parent="Actionables"]
+position = Vector2(50, 49)
+
+[node name="Wall Light" parent="Actionables" instance=ExtResource("4_2dfam")]
+position = Vector2(282, 709)
+
+[node name="Left Door" type="Node2D" parent="Actionables"]
+position = Vector2(71, 780)

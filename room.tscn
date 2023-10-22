@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1h04rst6cwux"]
 
 [ext_resource type="Script" path="res://room.gd" id="2_6jcr7"]
-[ext_resource type="Texture2D" uid="uid://b5qceqbbuj2yd" path="res://room1.png" id="2_25dci"]
+[ext_resource type="Texture2D" path="res://room1.png" id="2_25dci"]
 [ext_resource type="Script" path="res://Actionables.gd" id="3_vluub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hq1qq"]
