@@ -1,6 +1,13 @@
 # Assets
-- [ ] map
-- [ ] character (w/ nightcap)
-- [ ] candle (?)
-- [ ] grue (?)
-- [ ] art pieces or whatever the collectibles are
+- [x] map
+- [x] character (w/ nightcap)
+- [x] candle (?)
+~~- [ ] grue (?)~~
+- [x] wall lights
+- [x] bookcase
+- [x] phonograph
+- [ ] armchair
+- [ ] menu things
+  - [ ] start
+  - [ ] quit (i'm a scaredycat)
+  - [ ] credits
