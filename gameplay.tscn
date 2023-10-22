@@ -27,7 +27,7 @@ script = ExtResource("3_pdeq8")
 
 [node name="Player" parent="." instance=ExtResource("4_ryon0")]
 position = Vector2(1285, 868)
-candle_decay_factor = 3.0
+candle_decay_factor = 2.83
 
 [node name="LeftTransitionLayer" type="Area2D" parent="."]
 position = Vector2(50, 49)

@@ -11,10 +11,10 @@ func init_gameplay():
 	game = gameplay_scene.instantiate()
 
 func start_game():
-	add_child(game)
+	get_parent().add_child(game)
+	get_parent().remove_child(self)
 
 func _on_start_button_pressed():
-	init_gameplay()
 	start_game()
 
 func _on_quit_button_pressed():

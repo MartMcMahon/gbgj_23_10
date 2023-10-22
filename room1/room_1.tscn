@@ -61,7 +61,7 @@ polygon = PackedVector2Array(184, 581, 171, 954, 381.731, 1107.74, 382, 1169, 48
 script = ExtResource("3_v40fk")
 
 [node name="Wall Light" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
-position = Vector2(282, 709)
+position = Vector2(249, 713)
 
 [node name="Area2D2" type="Area2D" parent="Actionables/Wall Light"]
 position = Vector2(-6, -9)
@@ -71,7 +71,7 @@ position = Vector2(3, 184)
 shape = SubResource("RectangleShape2D_pl75n")
 
 [node name="Wall Light2" parent="Actionables" groups=["actionable"] instance=ExtResource("4_7bopx")]
-position = Vector2(1163, 717)
+position = Vector2(1034, 711)
 
 [node name="Area2D2" type="Area2D" parent="Actionables/Wall Light2"]
 position = Vector2(-1, -23)
