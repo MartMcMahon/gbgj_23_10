@@ -24,10 +24,10 @@ blend_mode = 1
 
 [node name="RoomController" type="Node2D" parent="."]
 script = ExtResource("3_pdeq8")
-starting_room_idx = 1
 
 [node name="Player" parent="." instance=ExtResource("4_ryon0")]
 position = Vector2(1285, 868)
+candle_decay_factor = 3.0
 
 [node name="LeftTransitionLayer" type="Area2D" parent="."]
 position = Vector2(50, 49)

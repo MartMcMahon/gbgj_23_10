@@ -92,7 +92,7 @@ position = Vector2(36, 33.312)
 polygon = PackedVector2Array(15, 11, 76, 27.312, -42, 122, -63, 118)
 
 [node name="phono" parent="Actionables" instance=ExtResource("8_w37qy")]
-position = Vector2(692, 948)
+position = Vector2(1063, 882)
 audio = ExtResource("9_wwfdc")
 
 [node name="WallLayer" type="Area2D" parent="."]

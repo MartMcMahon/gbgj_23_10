@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @export var walking_speed = 150.0
+@export var candle_decay_factor: float = 5.0
 @onready var _animated_sprite = $AnimatedSprite2D
 
 var x_scale = 0.1
-var candle_decay_factor: float = 5.0
 var is_in_bookcase_area = false
 var is_in_phono_area = false
 var is_in_light_area = false
