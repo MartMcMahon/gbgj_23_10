@@ -1,12 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://vbnfe4drmnr7"]
+[gd_scene load_steps=7 format=3 uid="uid://vbnfe4drmnr7"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_i65df"]
 [ext_resource type="Texture2D" uid="uid://xiddyr58v0g3" path="res://candle_guy.png" id="2_gjyb1"]
+
+[sub_resource type="Gradient" id="Gradient_fst13"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.880645)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_olpb0"]
+gradient = SubResource("Gradient_fst13")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.06)
+
+[sub_resource type="Gradient" id="Gradient_oxalt"]
+offsets = PackedFloat32Array(0, 0.0516129, 0.2, 0.870968)
+colors = PackedColorArray(1, 1, 0.596078, 1, 1, 0.615686, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bb5ae"]
+gradient = SubResource("Gradient_oxalt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_i65df")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(25.302, 21.75)
+position = Vector2(157, 209)
 scale = Vector2(0.104027, 0.104027)
 texture = ExtResource("2_gjyb1")
+
+[node name="CandleLight" type="PointLight2D" parent="."]
+position = Vector2(38, 141)
+color = Color(0.984314, 0.921569, 0.764706, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_olpb0")
+height = 100.0
+
+[node name="CandleGlow" type="PointLight2D" parent="."]
+position = Vector2(38, 141)
+color = Color(1, 0.647059, 0.164706, 1)
+texture = SubResource("GradientTexture2D_bb5ae")

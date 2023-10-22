@@ -6,16 +6,18 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
-position = Vector2(12, 37)
-
-[node name="RoomMaker" type="Node" parent="."]
-script = ExtResource("3_t6yon")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
 position = Vector2(546, 360)
 scale = Vector2(0.360656, 0.222305)
 texture = ExtResource("3_ifrek")
-metadata/_edit_lock_ = true
+
+[node name="RoomMaker" type="Node" parent="."]
+script = ExtResource("3_t6yon")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
+position = Vector2(12, 37)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
