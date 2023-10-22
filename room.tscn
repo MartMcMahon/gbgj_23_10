@@ -1,25 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1h04rst6cwux"]
+[gd_scene load_steps=5 format=3 uid="uid://b1h04rst6cwux"]
 
-[ext_resource type="Shader" path="res://shad.gdshader" id="1_d7vlh"]
-[ext_resource type="Shader" path="res://room.gdshader" id="1_jpmo3"]
 [ext_resource type="Script" path="res://room.gd" id="2_6jcr7"]
+[ext_resource type="Texture2D" uid="uid://b5qceqbbuj2yd" path="res://room1.png" id="2_25dci"]
+[ext_resource type="Script" path="res://Actionables.gd" id="3_vluub"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_75obm"]
-shader = ExtResource("1_jpmo3")
-shader_parameter/dist_to_player = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4vvp"]
-shader = ExtResource("1_d7vlh")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_qlt42"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq1qq"]
+size = Vector2(101, 97)
 
 [node name="Room" type="Node2D"]
-material = SubResource("ShaderMaterial_75obm")
-position = Vector2(-62, -214)
+position = Vector2(50, 49)
 script = ExtResource("2_6jcr7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_w4vvp")
 use_parent_material = true
-scale = Vector2(100, 100)
-texture = SubResource("CanvasTexture_qlt42")
+position = Vector2(-69, -75)
+scale = Vector2(0.423043, 0.423989)
+texture = ExtResource("2_25dci")
+centered = false
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="right_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/right_wall"]
+position = Vector2(930, 625)
+scale = Vector2(0.8125, 0.735877)
+polygon = PackedVector2Array(65.2307, -10.8713, 73.8461, 275.861, 285.538, 517.749)
+
+[node name="table2" type="StaticBody2D" parent="Walls"]
+position = Vector2(818, 915)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/table2"]
+position = Vector2(357, -278)
+scale = Vector2(0.8125, 0.735877)
+polygon = PackedVector2Array(-400, 368.268, -478.769, 366.909, -475.077, 407.677, -398.769, 402.241)
+
+[node name="table1" type="StaticBody2D" parent="Walls"]
+position = Vector2(451, 947)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/table1"]
+position = Vector2(352, -285)
+scale = Vector2(0.8125, 0.735877)
+polygon = PackedVector2Array(-400, 368.268, -478.769, 366.909, -475.077, 407.677, -398.769, 402.241)
+
+[node name="couch" type="StaticBody2D" parent="Walls"]
+position = Vector2(644, 955)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/couch"]
+position = Vector2(289, -290)
+scale = Vector2(0.8125, 0.735877)
+polygon = PackedVector2Array(-262.154, 365.55, -478.769, 366.909, -525.538, 516.39, -192, 466.11)
+
+[node name="room_object2" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/room_object2"]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_hq1qq")
+
+[node name="back_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/back_wall"]
+position = Vector2(755, 462)
+scale = Vector2(0.8125, 0.735877)
+polygon = PackedVector2Array(285.539, 52.9979, -541.538, 122.303, -525.538, 516.39, 289.231, 497.365)
+
+[node name="left_wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(50, 49)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/left_wall"]
+position = Vector2(115, 780)
+polygon = PackedVector2Array(200, -123, 108, 293, 221, 86)
+
+[node name="Actionables" type="Node" parent="."]
+script = ExtResource("3_vluub")

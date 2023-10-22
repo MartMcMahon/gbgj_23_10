@@ -1,23 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfdvx3kg4ok2r"]
 
 [ext_resource type="PackedScene" uid="uid://vbnfe4drmnr7" path="res://character.tscn" id="1_tceel"]
-[ext_resource type="Texture2D" uid="uid://1nhy2au6fjhj" path="res://IMG_4444.jpeg" id="3_ifrek"]
-[ext_resource type="Script" path="res://RoomMaker.gd" id="3_t6yon"]
+[ext_resource type="PackedScene" uid="uid://b1h04rst6cwux" path="res://room.tscn" id="2_hkrdb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g41mk"]
+load_path = "res://.godot/imported/bg_raw.png-163b4460a35b774eb14bc19e022f1b86.ctex"
 
 [node name="Node2D" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+visible = false
 position = Vector2(546, 360)
 scale = Vector2(0.360656, 0.222305)
-texture = ExtResource("3_ifrek")
+texture = SubResource("CompressedTexture2D_g41mk")
 
-[node name="RoomMaker" type="Node" parent="."]
-script = ExtResource("3_t6yon")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
-position = Vector2(12, 37)
+[node name="Room1" parent="." instance=ExtResource("2_hkrdb")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_tceel")]
+position = Vector2(313, 864)

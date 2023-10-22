@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vbnfe4drmnr7"]
+[gd_scene load_steps=11 format=3 uid="uid://vbnfe4drmnr7"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_i65df"]
 [ext_resource type="Texture2D" uid="uid://xiddyr58v0g3" path="res://candle_guy.png" id="2_gjyb1"]
+[ext_resource type="Texture2D" uid="uid://vc8vi242vdd7" path="res://guy_walking_animation/Guy_walking1.png" id="3_hbj4n"]
+[ext_resource type="Texture2D" uid="uid://cm1en2ov5vedx" path="res://guy_walking_animation/Guy_walking2.png" id="4_pdbwr"]
 
 [sub_resource type="Gradient" id="Gradient_fst13"]
 interpolation_mode = 2
@@ -23,22 +25,54 @@ gradient = SubResource("Gradient_oxalt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbfxa"]
+radius = 14.0
+height = 34.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6u6u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pdbwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hbj4n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_i65df")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(157, 209)
-scale = Vector2(0.104027, 0.104027)
-texture = ExtResource("2_gjyb1")
-
 [node name="CandleLight" type="PointLight2D" parent="."]
-position = Vector2(38, 141)
+position = Vector2(42, 143)
 color = Color(0.984314, 0.921569, 0.764706, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_olpb0")
+texture_scale = 15.0
 height = 100.0
 
 [node name="CandleGlow" type="PointLight2D" parent="."]
-position = Vector2(38, 141)
+position = Vector2(42, 143)
 color = Color(1, 0.647059, 0.164706, 1)
 texture = SubResource("GradientTexture2D_bb5ae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(90, 152)
+scale = Vector2(0.104027, 0.104027)
+texture = ExtResource("2_gjyb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(98, 242)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wbfxa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(92, 149)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_l6u6u")
+animation = &"walk"
+frame_progress = 0.667914
